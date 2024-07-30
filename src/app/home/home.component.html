@@ -1,0 +1,40 @@
+<div class="h-screen w-screen flex m-2 flex-row">
+  <table class="rounded-sm border-2 border-black grow">
+    <thead class="border-2 border-black">
+      <tr>
+        <th class="border-2 border-black p-2">ID</th>
+        <th class="border-2 border-black p-2">Name</th>
+        <th class="border-2 border-black p-2">Username</th>
+        <th class="border-2 border-black p-2">Email</th>
+        <th class="border-2 border-black p-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="border-2 border-black text-center">
+      <tr class="border-2 border-black" *ngFor="let user of users">
+        <td class="border-2 border-black">{{user?.id}}</td>
+        <td class="border-2 border-black">
+          <ng-container *ngIf="editingUserId===user.id; else readonlyName">
+            <input class="border border-gray-700 p-2" [(ngModel)]="user.name" placeholder="Enter user name"/>
+          </ng-container>
+          <ng-template #readonlyName>{{user?.name}}</ng-template>
+        </td>
+        <td class="border-2 border-black">
+          <ng-container *ngIf="editingUserId===user.id; else readonlyUserName">
+            <input class="border border-gray-700 p-2" [(ngModel)]="user.username" placeholder="Enter username"/>
+          </ng-container>
+          <ng-template #readonlyUserName>{{user?.username}}</ng-template>
+        </td>
+        <td class="border-2 border-black">
+          <ng-container *ngIf="editingUserId===user.id; else readonlyEmail">
+            <input class="border border-gray-700 p-2" [(ngModel)]="user.email" placeholder="Enter email"/>
+          </ng-container>
+          <ng-template #readonlyEmail>{{user?.email}}</ng-template>
+        </td>
+        <td class="justify-between gap-5">
+          <button class="border-2 border-gray-500 rounded-sm p-2" (click)="editUserInfo(user)">Edit</button>
+          <button class="border-2 border-gray-500 rounded-sm ml-5 p-2" (click)="saveUserInfo(user)">Save</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
