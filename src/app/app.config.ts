@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideStore(),
-    provideUserServices(),
+    // provideUserServices(),
     provideHttpClient(withInterceptorsFromDi()),
     AsyncPipe,
     provideStoreDevtools({
